@@ -3,6 +3,8 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+const PORT = 80;
+
 app.use(express.static('public'));
 
 let user_id = 0;
@@ -25,6 +27,6 @@ io.on('connection', function(socket){
   });
 });
 
-http.listen(80, function(){
-  console.log('listening on *:3000');
+http.listen(PORT, function(){
+  console.log('listening on *:' + PORT);
 });
