@@ -15,7 +15,7 @@
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.sendPosition);
         } else {
-            alert("Geolocation is not supported by this browser.");
+            this.sendPosition({coords:{ latitude: -34.5822503, longitude: -58.4100133 }})
         }
     },
     sendPosition: function(position) {
