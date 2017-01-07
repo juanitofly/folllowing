@@ -19,10 +19,12 @@ io.on('connection', function(socket){
   });
 
   socket.on('position', function(msg){
+    console.log('position => positionAll', msg);
     io.emit('positionAll', msg);
   });
 
   socket.on('click', function(msg){
+    console.log('click => positionAll', msg);
     io.emit('positionAll', msg);
   });
 });

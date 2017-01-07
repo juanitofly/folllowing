@@ -27,6 +27,8 @@
         };
         controller.socket.emit('position', msg);
 
+console.log("init the map");
+
         $.getScript("map.js", function(){
             map.init(msg, 'map');
             controller.socket.on('positionAll', function(msg){

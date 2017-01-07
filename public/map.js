@@ -17,12 +17,15 @@ var map = {
             }
             controller.socket.emit('click', msg);
         });
+        
     },
     setMarker: function(msg) {
-        var geocoder = {
+    /*    var geocoder = {
             GeocoderRequest
         }
         google.maps.Geocoder.
+    */
+    console.log("settin marker", msg);
 
         var marker = new google.maps.Marker({
             position: msg.message,
