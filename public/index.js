@@ -7,6 +7,7 @@
     init: function () {
         controller.socket.on('user_id', function(id){
             myUser_id = id;
+            document.title = "user_id: " + myUser_id;
             controller.getLocation();
         });
     },
@@ -26,8 +27,6 @@
             }
         };
         controller.socket.emit('position', msg);
-
-console.log("init the map");
 
         $.getScript("map.js", function(){
             map.init(msg, 'map');
