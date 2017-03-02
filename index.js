@@ -32,3 +32,7 @@ io.on('connection', function(socket){
 http.listen(PORT, function(){
   console.log('NEW listening on *:' + PORT);
 });
+
+app.get('/domotica', function(req, res) {
+  res.send('hello world');
+});
