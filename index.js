@@ -35,4 +35,13 @@ http.listen(PORT, function(){
 
 app.get('/domotica', function(req, res) {
   res.send('hello world');
+  var fs = require('fs');
+  fs.writeFile("/tmp/test", "Hey there!", function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log("The file was saved!");
+});
+ console.log("Final");
 });
