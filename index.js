@@ -33,15 +33,45 @@ http.listen(PORT, function(){
   console.log('NEW listening on *:' + PORT);
 });
 
-app.get('/domotica', function(req, res) {
-  res.send('hello world');
-  var fs = require('fs');
-  fs.writeFile("/tmp/test", "Hey there!", function(err) {
-    if(err) {
-        return console.log(err);
-    }
+app.get('/domotica/:action', function(req, res) {
+  
+  if (req.params.action == 'save') {
+    res.send('Saving file');
+    var fs = require('fs');
 
-    console.log("The file was saved!");
+    var domoticState = {
+      termofon: 'calefon state',
+      luzPasillo: 'luz pasillo state'
+    };
+    domoticState = JSON.stringify(domoticState);
+
+    fs.writeFile("./domoticState", domoticState, function(err) {
+      if(err) {
+          return console.log(err);
+      }
+      console.log("The file was saved!");
+    });
+    
+  }
+
+  if (req.params.action == 'leer') {
+    var fs = require('fs');
+
+    fs.readFile("./domoticState", function (err, data) {   
+      if (err) throw err;   
+      var domoticState = JSON.parse(data);
+    
+      var result = domoticState.termofon;  
+
+      res.send(result);
+   });
+    
+  }
+
+  console.log("Final");
+  
 });
- console.log("Final");
+
+app.get('/domotica', function(req, res) {
+  
 });
