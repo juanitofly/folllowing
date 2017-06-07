@@ -33,6 +33,17 @@ http.listen(PORT, function(){
   console.log('NEW listening on *:' + PORT);
 });
 
+app.get('/webhook', function(req, res) {
+  if (req.query['hub.mode'] === 'subscribe' &&
+      req.query['hub.verify_token'] === "EAAI7duXIHv8BAOWKB9VoVZBy6FUrf9tBporUBs8aKhTYalRc2PcMQWPvvxWK7P0XSKOAZBf0UR2ZCG7BLyQBZBlwZAC8qiIotwtShLkyphkI0riAk018lJvIvHlqaYc2jJ4ngD5bRNLvjqwY3V3azMzTcfZACLCz0AKNEQJYH2zQZDZD") {
+    console.log("Validating webhook");
+    res.status(200).send(req.query['hub.challenge']);
+  } else {
+    console.error("Failed validation. Make sure the validation tokens match.");
+    res.sendStatus(403);          
+  }  
+});
+
 app.get('/domotica/:action', function(req, res) {
   
   if (req.params.action == 'save') {
