@@ -2,12 +2,19 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 5000;
 
 const PAGE_ACCESS_TOKEN = "EAAI7duXIHv8BAO05SnBa1XO8Mz8ErDl1aExJbis1oW390ZByHRy5KSZAiAub98XP4akfL2YpZCyVkpdJY5vAcVo4V1FCVsyyJ5LXHksIjZCSAe9j7TwiiKAybiIP1Ef6ZBdFkkboz6KTpG33NZC5hxF34FYjUPuV4HFCkEBZCkdpQZDZD";
 
 app.use(express.static('public'));
+
+// configure the app to use bodyParser()
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 
 app.get('/test', function(req, res) {
   res.status(200).send("- Va como piña -");
@@ -26,7 +33,7 @@ app.get('/webhook', function(req, res) {
 
 app.post('/webhook', function (req, res) {
 
-console.log(req);
+  console.log(req.body);
 
   var data = req.body;
 
