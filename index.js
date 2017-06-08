@@ -76,7 +76,7 @@ function receivedMessage(event) {
 
   var messageId = message.mid;
 
-  var messageText = message.text;
+  var messageText = message.text + " AUTO_MSG";
   var messageAttachments = message.attachments;
 
   if (messageText) {
