@@ -9,7 +9,9 @@ const PAGE_ACCESS_TOKEN = "EAAI7duXIHv8BAO05SnBa1XO8Mz8ErDl1aExJbis1oW390ZByHRy5
 
 app.use(express.static('public'));
 
-
+app.get('/test', function(req, res) {
+  res.status(200).send("- Va como piña -");
+});
 
 app.get('/webhook', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
@@ -24,6 +26,8 @@ app.get('/webhook', function(req, res) {
 
 app.post('/webhook', function (req, res) {
   var data = req.body;
+
+console.log(data);
 
   // Make sure this is a page subscription
   if (data.object === 'page') {
